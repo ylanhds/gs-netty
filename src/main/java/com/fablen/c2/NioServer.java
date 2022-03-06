@@ -23,8 +23,8 @@ public class NioServer {
     static Logger logger = LogManager.getLogger(NioServer.class.getName());
 
     public static void main(String[] args) throws IOException {
-        m1();
-//        m2();
+//        m1();
+        m2();
 //        m3();
     }
 
@@ -41,6 +41,8 @@ public class NioServer {
 
         // 3 连接集合
         List<SocketChannel> channels = new ArrayList<>();
+
+        // 循环接收连接
         while (true) {
             // 4 accept 建立与客户端连接，SocketChannel 用来与客户端之间通信
             logger.info("connection.....");
@@ -63,26 +65,26 @@ public class NioServer {
 
     /**
      * 非阻塞模式
+     * 可以通过ServerSocketChannel的configureBlocking(false)方法将获得连接设置为非阻塞的。此时若没有连接，accept会返回null
+     * 可以通过SocketChannel的configureBlocking(false)方法将从通道中读取数据设置为非阻塞的。若此时通道中没有数据可读，read会返回-1
      */
     private static void m2() throws IOException {
         ByteBuffer buffer = ByteBuffer.allocate(16);
 
-        // 1 创建服务器
         ServerSocketChannel ssc = ServerSocketChannel.open();
-        ssc.configureBlocking(false);//accept方法 切换非阻塞(ssc.configureBlocking(false)) 线程还是继续运行 但是返回的sc 是 null
-
-        // 2 绑定监听端口
+        ssc.configureBlocking(false);//可以通过ServerSocketChannel的configureBlocking(false)方法将获得连接设置为非阻塞的。此时若没有连接，accept会返回null
         ssc.bind(new InetSocketAddress(8080));
 
         // 3 连接集合
         List<SocketChannel> channels = new ArrayList<>();
+
         while (true) {
             // 4 accept 建立与客户端连接，SocketChannel 用来与客户端之间通信
-            logger.info("connection.....");
             SocketChannel sc = ssc.accept();
             if (sc != null) {
                 logger.info("connected.....");
-                sc.configureBlocking(false);// 当 SocketChannel 设置非阻塞 channel.read 线程还是继续运行
+                // 设置为非阻塞模式，没有连接时返回null，不会阻塞线程
+                sc.configureBlocking(false);
                 channels.add(sc);
 
             }
