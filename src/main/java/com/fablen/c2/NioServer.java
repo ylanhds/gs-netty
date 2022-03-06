@@ -44,14 +44,14 @@ public class NioServer {
         while (true) {
             // 4 accept 建立与客户端连接，SocketChannel 用来与客户端之间通信
             logger.info("connection.....");
-            // accept方法 默认是阻塞的 意味着线程停止运行  当连接建立以后就恢复
+            // accept方法 默认是阻塞的。没有连接时-意味着线程停止运行  当连接建立以后就恢复
             SocketChannel sc = ssc.accept();
             logger.info("connected.....");
             channels.add(sc);
             for (SocketChannel channel : channels) {
                 //5 接受客户端发送的数据
                 logger.info("before read...{}", channel);
-                // read方法 默认是阻塞的 线程不会运行
+                // read方法 默认是阻塞的 没有消息-线程不会运行
                 channel.read(buffer);
                 buffer.flip();
                 ByteBufferUtil.debugAll(buffer);

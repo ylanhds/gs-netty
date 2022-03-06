@@ -1,10 +1,9 @@
 package com.fablen.utils;
 
-import java.nio.ByteBuffer;
-
 import io.netty.util.internal.MathUtil;
 import io.netty.util.internal.StringUtil;
-import io.netty.util.internal.MathUtil.*;
+
+import java.nio.ByteBuffer;
 
 
 /**
@@ -75,6 +74,7 @@ public class ByteBufferUtil {
 
     /**
      * 打印所有内容
+     *
      * @param buffer
      */
     public static void debugAll(ByteBuffer buffer) {
@@ -90,6 +90,7 @@ public class ByteBufferUtil {
 
     /**
      * 打印可读取内容
+     *
      * @param buffer
      */
     public static void debugRead(ByteBuffer buffer) {
