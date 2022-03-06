@@ -1,4 +1,4 @@
-package com.fa.netty.Utils;
+package com.fablen.utils;
 
 import java.nio.ByteBuffer;
 

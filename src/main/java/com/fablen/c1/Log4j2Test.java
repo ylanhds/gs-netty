@@ -1,4 +1,4 @@
-package com.fa.netty.c1;
+package com.fablen.c1;
 
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.LogManager;

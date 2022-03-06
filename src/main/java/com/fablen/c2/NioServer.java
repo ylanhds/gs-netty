@@ -1,6 +1,6 @@
-package com.fa.netty.c2;
+package com.fablen.c2;
 
-import com.fa.netty.Utils.ByteBufferUtil;
+import com.fablen.utils.ByteBufferUtil;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
